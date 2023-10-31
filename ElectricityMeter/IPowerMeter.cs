@@ -8,5 +8,10 @@ namespace ElectricityMeter
 {
     internal interface IPowerMeter
     {
+        string desgination { get; }
+        float countConsumption { get; }
+        void Consumption();
+        (string, DateTime, float) Deduction();
+
     }
 }

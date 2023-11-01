@@ -11,6 +11,7 @@ namespace ElectricityMeter
         string desgination { get; }
         float countConsumption { get; }
         void Consumption();
+        void TurnOn(bool status);
         (string, DateTime, float) Deduction();
 
     }

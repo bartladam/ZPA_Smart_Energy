@@ -16,17 +16,12 @@ namespace ElectricityMeter
         }
         public void AddInformation(string text, DateTime dt, float count)
         {
-            information.Add(string.Format("{0}\n{1}\n{2}\n", text, dt.ToString(), count.ToString()));
+            information.Add(string.Format("{0}\n{1}\nTotal consumption: {2} kWh\n", text, dt.ToString(), Math.Round(count, 2).ToString()));
         }
-        public override string ToString()
-        {
-            string allDats = "";
-            foreach (string item in information)
-            {
-                allDats += item;
-            }
-            return allDats;
-        }
+        public List<string> GetInfo() => information;
+
+        
+           
 
     }
 }

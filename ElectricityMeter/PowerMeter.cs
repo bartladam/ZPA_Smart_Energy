@@ -8,24 +8,27 @@ namespace ElectricityMeter
 {
     internal class PowerMeter : IPowerMeter
     {
-        public string desgination { get; private set; }
+        public int desgination { get; private set; }
         public float countConsumption { get; private set; }
         public bool status { get; private set; } = false;
+        private Random randomDesgination { get; set; }
+        public PowerMeter()
+        {
+            randomDesgination = new Random();
+            this.desgination = randomDesgination.Next();
+        }
         public void Consumption()
         {
             while (status)
             {
-                Task.Delay(500).Wait();
                 countConsumption += 0.1f;
-                Console.WriteLine(countConsumption);
+                Console.WriteLine("Actual consumption: {0} kWh",Math.Round(countConsumption, 2));
+                Task.Delay(800).Wait();
             }
         }
         public void TurnOn(bool status)
         {
-            if (status)
-                this.status = status;
-            else
-                this.status = status;
+            this.status = status;
         }
         public (string, DateTime, float) Deduction()
         {

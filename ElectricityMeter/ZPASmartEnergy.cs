@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ElectricityMeter
+﻿namespace ElectricityMeter
 {
     internal class ZPASmartEnergy
     {
@@ -21,17 +15,24 @@ namespace ElectricityMeter
             this.database = database;
             households = new List<Household>();
         }
-        public void Contract(Household household, int numberPowerMeter)
+        public void Contract(Household household)
         {
             households.Add(household);
-            MakePowerMeter(numberPowerMeter);
+            MakePowerMeter();
+            household.InstallPowerMeter(powerMeters.Dequeue());
         }
-        private void MakePowerMeter(int number)
+        private void MakePowerMeter()
         {
-            for (int i = 0; i < number; i++)
+            powerMeters.Enqueue(new PowerMeter());         
+        }
+        public string GetInformationFromDatabase()
+        {
+            string dataFromPowerMeters = "ZPA Smart energy database" + "\n";
+            foreach (string item in database.GetInfo())
             {
-                powerMeters.Enqueue(new PowerMeter());
+                dataFromPowerMeters += item + "\n";
             }
+            return dataFromPowerMeters;
         }
 
     }

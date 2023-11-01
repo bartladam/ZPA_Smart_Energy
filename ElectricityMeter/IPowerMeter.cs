@@ -8,7 +8,7 @@ namespace ElectricityMeter
 {
     internal interface IPowerMeter
     {
-        int desgination { get; }
+        int desigination { get; }
         float countConsumption { get; }
         void Consumption();
         void TurnOn(bool status);
